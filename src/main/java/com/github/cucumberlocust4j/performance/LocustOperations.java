@@ -1,4 +1,4 @@
-package performance;
+package com.github.cucumberlocust4j.performance;
 
 import java.io.IOException;
 import java.util.List;
