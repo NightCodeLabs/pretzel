@@ -1,0 +1,8 @@
+language: ruby
+
+services:
+  - docker
+
+script:
+  - docker-compose up --build -d
+  - docker cp locustapitest:/locustapitest/report.zip .

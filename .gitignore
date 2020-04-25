@@ -1,0 +1,12 @@
+.settings/
+.sts4-cache/
+/target/
+.idea
+.classpath
+.project
+locustapitest.iml
+src/main/resources/performance/locust-master.pyc
+src/main/resources/performance/__pycache__/locust-master.*.pyc
+performanceResults_stats_history.csv
+performanceResults_stats.csv
+
