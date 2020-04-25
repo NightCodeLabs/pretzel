@@ -8,11 +8,11 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.github.cucumberlocust4j.helpers.ConfigReader;
+import com.github.cucumberlocust4j.helpers.FileOperations;
 import com.vimalselvam.cucumber.listener.Reporter;
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
-import helpers.ConfigReader;
-import helpers.FileOperations;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(

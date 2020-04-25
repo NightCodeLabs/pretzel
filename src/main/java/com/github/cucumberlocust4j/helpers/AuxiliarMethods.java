@@ -1,4 +1,4 @@
-package helpers;
+package com.github.cucumberlocust4j.helpers;
 
 import java.util.List;
 import java.util.Map;

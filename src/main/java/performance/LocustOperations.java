@@ -8,10 +8,9 @@ import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import helpers.AuxiliarMethods;
-import helpers.ConfigReader;
-import helpers.FileOperations;
-
+import com.github.cucumberlocust4j.helpers.AuxiliarMethods;
+import com.github.cucumberlocust4j.helpers.ConfigReader;
+import com.github.cucumberlocust4j.helpers.FileOperations;
 import com.github.myzhan.locust4j.AbstractTask;
 import com.github.myzhan.locust4j.Locust;
 

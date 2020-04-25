@@ -3,14 +3,13 @@ package steps;
 import java.io.File;
 import java.io.IOException;
 
+import com.github.cucumberlocust4j.graph.LocustBarChart;
+import com.github.cucumberlocust4j.helpers.ConfigReader;
 import com.vimalselvam.cucumber.listener.Reporter;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-
-import graph.LocustBarChart;
-import helpers.ConfigReader;
 
 public class Hooks {
 	
