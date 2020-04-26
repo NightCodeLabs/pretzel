@@ -1,4 +1,4 @@
-package com.github.cucumberlocust4j.helpers;
+package com.github.cucumberlocust4j.pretzel.helpers;
 
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.github.cucumberlocust4j.graph;
+package com.github.cucumberlocust4j.pretzel.graph;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,8 +14,8 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.cucumberlocust4j.helpers.ConfigReader;
-import com.github.cucumberlocust4j.helpers.FileOperations;
+import com.github.cucumberlocust4j.pretzel.helpers.ConfigReader;
+import com.github.cucumberlocust4j.pretzel.helpers.FileOperations;
 
 
 public class LocustBarChart {

@@ -3,8 +3,8 @@ package steps;
 import java.io.File;
 import java.io.IOException;
 
-import com.github.cucumberlocust4j.graph.LocustBarChart;
-import com.github.cucumberlocust4j.helpers.ConfigReader;
+import com.github.cucumberlocust4j.pretzel.graph.LocustBarChart;
+import com.github.cucumberlocust4j.pretzel.helpers.ConfigReader;
 import com.vimalselvam.cucumber.listener.Reporter;
 
 import cucumber.api.Scenario;

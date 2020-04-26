@@ -1,4 +1,4 @@
-package com.github.cucumberlocust4j.performance;
+package com.github.cucumberlocust4j.pretzel.performance;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.cucumberlocust4j.helpers.AuxiliarMethods;
-import com.github.cucumberlocust4j.helpers.ConfigReader;
-import com.github.cucumberlocust4j.helpers.FileOperations;
+import com.github.cucumberlocust4j.pretzel.helpers.AuxiliarMethods;
+import com.github.cucumberlocust4j.pretzel.helpers.ConfigReader;
+import com.github.cucumberlocust4j.pretzel.helpers.FileOperations;
 import com.github.myzhan.locust4j.AbstractTask;
 import com.github.myzhan.locust4j.Locust;
 
