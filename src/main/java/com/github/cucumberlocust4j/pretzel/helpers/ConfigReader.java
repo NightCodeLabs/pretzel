@@ -11,6 +11,12 @@ public class ConfigReader {
 	private static final Logger logger = LoggerFactory.getLogger(ConfigReader.class);
 	private static ConfigReader _instance = new ConfigReader();
 	private Properties properties;
+	private static final String STATSREPORTPATH = "target/csvlocustsresults/performanceResults_stats.csv";
+	private static final String STATSHISTORYREPORTPATH = "target/csvlocustsresults/performanceResults_stats_history.csv";
+	private static final String CHARTPATH = "target/cucumber-reports/locustcharts/";
+	private static final String LOCUSTMASTERPATH = "src/main/resources/performance/locust-master.py";
+	private static final String CSVREPORTFOLDERPATH = "target/csvlocustsresults/";
+	private static final String EXTENTREPORTCONFIGPATH = "src/main/resources/configs/extent-config.xml";
 	
 	private ConfigReader() {
 		properties = new Properties();
@@ -31,27 +37,33 @@ public class ConfigReader {
 	}
 	
 	public String getStatsReportPath() {
-		return properties.getProperty("statsReportLocation");
+		if (properties.getProperty("STATSREPORTPATH") != null) return properties.getProperty("STATSREPORTPATH");
+		else return STATSREPORTPATH;
 	}
 	
 	public String getStatsHistoryReportPath() {
-		return properties.getProperty("statsHistoryReportLocation");
+		if (properties.getProperty("STATSHISTORYREPORTPATH") != null) return properties.getProperty("STATSHISTORYREPORTPATH");
+		else return STATSHISTORYREPORTPATH;
 	}
 
 	public String getChartPath() {
-		return properties.getProperty("chartLocation");
+		if (properties.getProperty("CHARTPATH") != null) return properties.getProperty("CHARTPATH");
+		else return CHARTPATH;
 	}
 	
 	public String getLocustMasterFilePath() {
-		return properties.getProperty("locustMasterFile");
+		if (properties.getProperty("LOCUSTMASTERPATH") != null) return properties.getProperty("LOCUSTMASTERPATH");
+		else return LOCUSTMASTERPATH;
 	}
 	
 	public String getCsvReportFolderPath() {
-		return properties.getProperty("csvReportFolderLocation");
+		if (properties.getProperty("CSVREPORTFOLDERPATH") != null) return properties.getProperty("CSVREPORTFOLDERPATH");
+		else return CSVREPORTFOLDERPATH;
 	}
 	
 	public String getExtentReportConfigPath() {
-		return properties.getProperty("extentReportConfigLocation");
+		if (properties.getProperty("EXTENTREPORTCONFIGPATH") != null) return properties.getProperty("EXTENTREPORTCONFIGPATH");
+		else return EXTENTREPORTCONFIGPATH;
 	}
 
 }

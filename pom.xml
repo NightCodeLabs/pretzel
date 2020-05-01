@@ -2,9 +2,9 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.cucumberlocust4j</groupId>
   <artifactId>pretzel</artifactId>
-  <version>${revision}</version>
+  <version>0.0.1-SNAPSHOT</version>
   <name>pretzel</name>
-  <description>Load and Performance Test done in BDD Style with Java, Locust4j and Cucumber</description>
+  <description>Dependency Library for Locust, Cucumber and Java</description>
   <url>https://github.com/cucumber-locust4j/pretzel</url>
   
   <licenses>
@@ -34,9 +34,6 @@
     </developers>
   
   	<properties>
-	  	<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
-        <revision>0.0.${maven.build.timestamp}</revision>
-        <scm-revision/>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -199,9 +196,6 @@
                             <addDefaultImplementationEntries/>
                             <addDefaultSpecificationEntries/>
                         </manifest>
-                        <manifestEntries>
-                            <Implementation-SCM-Revision>${scm-revision}</Implementation-SCM-Revision>
-                        </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>
