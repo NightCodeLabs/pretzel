@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import com.github.cucumberlocust4j.pretzel.helpers.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +20,6 @@ import cucumber.api.DataTable;
 public class LocustOperations {
 	
 	private static final String TASKPACKAGEPATH = "locusttask";
-	private static final String NAMEOFREPORT = "performanceResults";
 	private static final Logger logger = LoggerFactory.getLogger(LocustOperations.class);
 	private static String masterFilePath = FileOperations.getInstance().initialiseLocustMasterFile();
 	private static String csvReportFilePath = ConfigReader.getInstance().getCsvReportFolderPath();
@@ -71,7 +71,7 @@ public class LocustOperations {
 	 */
 	public void executeMaster() {
 		
-        String command="-f "+ masterFilePath +" --master --no-web --csv="+ csvReportFilePath + NAMEOFREPORT +" --expect-slaves=1 -c "+ maxUsers +" -r "+ usersLoadPerSecond+" -t"+testTime+"m";
+        String command="-f "+ masterFilePath +" --master --no-web --csv="+ csvReportFilePath + Constants.NAMEOFREPORT +" --expect-slaves=1 -c "+ maxUsers +" -r "+ usersLoadPerSecond+" -t"+testTime+"m";
         if (operatingSystem.indexOf("win") >= 0) {
         	command = "cmd.exe /c start /MIN locust.exe " + command;
         } else {

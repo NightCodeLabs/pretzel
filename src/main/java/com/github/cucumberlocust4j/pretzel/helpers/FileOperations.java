@@ -24,8 +24,6 @@ import com.opencsv.CSVReader;
 
 public class FileOperations {
 
-	private static final String LOCUSTMASTERFILEPATH = "target/pretzel/";
-	private static final String LOCUSTMASTERFILENAME = "locust-master.py";
 	private static final Logger logger = LoggerFactory.getLogger(FileOperations.class);
 	private static FileOperations _instance = new FileOperations();
 	
@@ -96,7 +94,7 @@ public class FileOperations {
 
 	   FileWriter file = null;
 	   try {
-		   file = new FileWriter(LOCUSTMASTERFILEPATH + LOCUSTMASTERFILENAME);
+		   file = new FileWriter(Constants.LOCUSTMASTERCOMPLETEPATH);
 
 		   for (String locustMasterFileLine : locustMasterFileLines) {
 			   file.write(locustMasterFileLine + "\n");
@@ -118,8 +116,8 @@ public class FileOperations {
    
   public String initialiseLocustMasterFile() {
 	  String locustFilePath = ConfigReader.getInstance().getLocustMasterFilePath();
-	  if(locustFilePath.contains(LOCUSTMASTERFILEPATH)) {
-		  this.initialiseFolder(LOCUSTMASTERFILEPATH);
+	  if(locustFilePath.contains(Constants.LOCUSTMASTERCOMPLETEPATH)) {
+		  this.initialiseFolder(Constants.LOCUSTMASTERFILEPATH);
 		  this.createLocustMasterFile();
 	  }
 	  return locustFilePath;
