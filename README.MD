@@ -1,20 +1,17 @@
-# Locust Api Test  
-[![Build Status](https://travis-ci.com/cucumber-locust4j/locustapitest.svg?branch=master)](https://travis-ci.com/cucumber-locust4j/locustapitest)
+# Pretzel  
+[![Build Status](https://travis-ci.com/cucumber-locust4j/pretzel.svg?branch=master)](https://travis-ci.com/cucumber-locust4j/pretzel)
 # Purpose  
 Teams use BDD to drive development based on the user behaviour, but stories never go beyond a single user, defects are found very late within development or even in production and there are no service level agreements, only actual user behaviour!  
 We need an easy, reusable way to tackle this, which would enable our development teams to drive load and performance testing into their day-to-day activities: from requirements gathering, to test automation as well as having part of the delivery pipeline, reusing the existing Java, RestAssured and Cucumber tests.
   
-## Installation guide  
-### Containerized Execution  
-- Install docker in your machine
-- Run
- ```  
-  $ docker-compose up --build -d
- ``` 
-- Copy Report  
- ```  
-  $ docker cp locustapitest:/locustapitest/report.zip .
- ``` 
+### Properties configuration  
+We offer the possiblitiy to personalize some default configurations. You only need to create a config.properties file  into src/main/resources/config:
+- statsReportPath 
+- statsHistoryReportPath
+- chartPath
+- locustMasterPath
+- csvReportFolderPath
+- extentReportConfigPath
 
 ### Local execution  
 #### Windows  

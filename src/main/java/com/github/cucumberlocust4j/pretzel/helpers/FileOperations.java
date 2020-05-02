@@ -3,6 +3,7 @@ package com.github.cucumberlocust4j.pretzel.helpers;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ import com.opencsv.CSVReader;
 
 public class FileOperations {
 
+	private static final String LOCUSTMASTERFILEPATH = "target/pretzel/";
+	private static final String LOCUSTMASTERFILENAME = "locust-master.py";
 	private static final Logger logger = LoggerFactory.getLogger(FileOperations.class);
 	private static FileOperations _instance = new FileOperations();
 	
@@ -77,27 +80,50 @@ public class FileOperations {
    
 
    public void folderInitialisation(String pathChartFolder, String pathCsvFolder) {
-	   this.initialiseChartsFolder(pathChartFolder);
-	   this.initialiseCsvFolder(pathCsvFolder);
+	   this.initialiseFolder(pathChartFolder);
+	   this.initialiseFolder(pathCsvFolder);
    }
    
-   private void initialiseChartsFolder(String path) {
+   private void createLocustMasterFile() {
+	   String[] locustMasterFileLines = { "from locust import Locust, TaskSet, task",
+			   "class DummyTask(TaskSet):",
+			   "\t@task(1)",
+			   "\tdef dummy(self):",
+			   "\t\tpass",
+			   "class Dummy(Locust):", 
+			   "\ttask_set = DummyTask"
+	   	};
+
+	   FileWriter file = null;
+	   try {
+		   file = new FileWriter(LOCUSTMASTERFILEPATH + LOCUSTMASTERFILENAME);
+
+		   for (String locustMasterFileLine : locustMasterFileLines) {
+			   file.write(locustMasterFileLine + "\n");
+		   }
+		   file.close();
+	   } catch (Exception e) {
+		   logger.error("Something went wrong creating the locust-master.py. Info: "+ e.getMessage());
+	   }
+   }
+   
+   private void initialiseFolder(String path) {
 	  try {
 		  FileUtils.deleteDirectory(new File(path));
 		  FileUtils.forceMkdir(new File(path));
 	  } catch (IOException e) {
-		  logger.error("Something went wrong initialising the charts directory");
+		  logger.error("Something went wrong initialising the "+ path +" directory");
 	  }			
    }
    
-   private void initialiseCsvFolder(String path) {
-	   try {
-			  FileUtils.deleteDirectory(new File(path));
-			  FileUtils.forceMkdir(new File(path));
-		  } catch (IOException e) {
-			  logger.error("Something went wrong initialising the csv directory");
-		  }		
-   }
+  public String initialiseLocustMasterFile() {
+	  String locustFilePath = ConfigReader.getInstance().getLocustMasterFilePath();
+	  if(locustFilePath.contains(LOCUSTMASTERFILEPATH)) {
+		  this.initialiseFolder(LOCUSTMASTERFILEPATH);
+		  this.createLocustMasterFile();
+	  }
+	  return locustFilePath;
+  }
     
 	
 }
