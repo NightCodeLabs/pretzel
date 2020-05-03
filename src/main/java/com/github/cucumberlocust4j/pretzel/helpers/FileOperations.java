@@ -78,12 +78,23 @@ public class FileOperations {
 	   return Paths.get(path).toFile().getAbsolutePath();
    }
    
-
+   //This class needs to be moved to another class
    public void folderInitialisation(String pathChartFolder, String pathCsvFolder) {
 	   this.initialiseFolder(pathChartFolder);
 	   this.initialiseFolder(pathCsvFolder);
    }
    
+   //This class needs to be moved to another class
+   public String initialiseLocustMasterFile() {
+ 	  String locustFilePath = ConfigReader.getInstance().getLocustMasterFilePath();
+ 	  if(locustFilePath.contains(LOCUSTMASTERFILEPATH)) {
+ 		  this.initialiseFolder(LOCUSTMASTERFILEPATH);
+ 		  this.createLocustMasterFile();
+ 	  }
+ 	  return locustFilePath;
+   }
+   
+   //This class needs to be moved to another class. Maybe to locustOperations
    private void createLocustMasterFile() {
 	   String[] locustMasterFileLines = { "from locust import Locust, TaskSet, task",
 			   "class DummyTask(TaskSet):",
@@ -115,15 +126,6 @@ public class FileOperations {
 		  logger.error("Something went wrong initialising the "+ path +" directory");
 	  }			
    }
-   
-  public String initialiseLocustMasterFile() {
-	  String locustFilePath = ConfigReader.getInstance().getLocustMasterFilePath();
-	  if(locustFilePath.contains(LOCUSTMASTERFILEPATH)) {
-		  this.initialiseFolder(LOCUSTMASTERFILEPATH);
-		  this.createLocustMasterFile();
-	  }
-	  return locustFilePath;
-  }
     
 	
 }
