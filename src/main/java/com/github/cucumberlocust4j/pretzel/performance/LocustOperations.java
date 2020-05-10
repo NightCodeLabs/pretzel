@@ -8,13 +8,10 @@ import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.cucumberlocust4j.pretzel.helpers.AuxiliarMethods;
 import com.github.cucumberlocust4j.pretzel.helpers.ConfigReader;
 import com.github.cucumberlocust4j.pretzel.helpers.FileOperations;
 import com.github.myzhan.locust4j.AbstractTask;
 import com.github.myzhan.locust4j.Locust;
-
-import cucumber.api.DataTable;
 
 public class LocustOperations {
 	
@@ -39,13 +36,13 @@ public class LocustOperations {
 	/*
 	 * This method set the data defined in cucumber in the private variables
 	 */
-	public void setTestData(DataTable testData){
-        this.maxUsers=(Integer.parseInt(AuxiliarMethods.getInstance().getDataTableValue(testData,"Max Users Load")));
-        this.usersLoadPerSecond=(Integer.parseInt(AuxiliarMethods.getInstance().getDataTableValue(testData,"Users Load Per Second")));
-        this.testTime=(Integer.parseInt(AuxiliarMethods.getInstance().getDataTableValue(testData,"Test Time")));
-        this.maxRPS = (Integer.parseInt((AuxiliarMethods.getInstance().getDataTableValue(testData, "Max RPS"))));
-        this.weight=(Integer.parseInt((AuxiliarMethods.getInstance().getDataTableValue(testData,"Max Users Load"))));
-    }
+	public void setTestData(Integer maxUsers, Integer usersLoadPerSecond, Integer testTime, Integer maxRPS, Integer weight){
+		this.maxUsers = maxUsers;
+		this.usersLoadPerSecond = usersLoadPerSecond;
+		this.testTime = testTime;
+		this.maxRPS = maxRPS;
+		this.weight = weight;
+	}
 	
 	/* 
 	 * This method setup the slave with the private variables that contains the information of cucumber
@@ -59,8 +56,8 @@ public class LocustOperations {
 	/*
 	 * This method execute the task specified in cucumber
 	 */
-	public void executeTask(DataTable data) throws Exception {
-       this.locustTask=TASKPACKAGEPATH+"." + AuxiliarMethods.getInstance().getDataTableValue(data,"Task");
+	public void executeTask(String taskName) throws Exception {
+       this.locustTask=TASKPACKAGEPATH+"." + taskName;
        Class<?> nameClass = Class.forName(locustTask);
        locust.run((AbstractTask) nameClass.getConstructor(Integer.class).newInstance(this.weight));
    }
@@ -98,8 +95,8 @@ public class LocustOperations {
     /*
      * This method execute the sequence needed for run the test
      */
-    public void executePerformanceTask(DataTable testData) throws Exception {
-		this.setTestData(testData);
+    public void executePerformanceTask(Integer maxUsers, Integer usersLoadPerSecond, Integer testTime, Integer maxRPS, Integer weight, String nameTask) throws Exception {
+		this.setTestData(maxUsers, usersLoadPerSecond, testTime, maxRPS, weight);
 		this.executeMaster();
 		if (operatingSystem.indexOf("win") >= 0) {
 			while (!checkWindowsLocustService()) {
@@ -107,7 +104,7 @@ public class LocustOperations {
 			}
 		}
 		this.setUpSlave();
-		this.executeTask(testData);
+		this.executeTask(nameTask);
 		TimeUnit.MINUTES.sleep(this.testTime);
 		this.locust.stop();
 		this.clearValues();
@@ -138,11 +135,11 @@ public class LocustOperations {
     }
     
     //It returns true or false if the Max response time is higher or not than the expected 
-    public Boolean checkMaxResponseTime(DataTable testData) {
+    public Boolean checkMaxResponseTime(Long expectedTime) {
     	Boolean higher = false;
     	List<String[]> data = FileOperations.getInstance().readCSV(ConfigReader.getInstance().getStatsReportPath());    	
     	try {
-			if (this.getMaxResponseTime(data, (data.size()-1))>Long.parseLong(AuxiliarMethods.getInstance().getDataTableValue(testData, "Expected Time"))){
+			if (this.getMaxResponseTime(data, (data.size()-1))>expectedTime){
 				higher = true;
 			}
 		} catch (Exception e) {
