@@ -66,18 +66,6 @@
             <version>2.6</version>
         </dependency>
 
-        <!-- Cucumber Extent Reporter -->
-        <dependency>
-    		<groupId>com.vimalselvam</groupId>
-    		<artifactId>cucumber-extentsreport</artifactId>
-    		<version>3.1.1</version>
-		</dependency>
-		
-		<dependency>
-    		<groupId>com.aventstack</groupId>
-    		<artifactId>extentreports</artifactId>
-    		<version>3.1.5</version>
-		</dependency>
         
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-csv -->
         <dependency>

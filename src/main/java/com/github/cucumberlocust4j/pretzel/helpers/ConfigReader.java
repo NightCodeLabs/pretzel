@@ -10,7 +10,8 @@ public class ConfigReader {
 	
 	private static final String STATSREPORTPATH = "target/csvlocustsresults/performanceResults_stats.csv";
 	private static final String STATSHISTORYREPORTPATH = "target/csvlocustsresults/performanceResults_stats_history.csv";
-	private static final String CHARTPATH = "target/cucumber-reports/locustcharts/";
+	private static final String CHARTDIR = "locustcharts/";
+	private static final String CHARTPATH = "target/cucumber-reports/" + CHARTDIR;
 	private static final String LOCUSTMASTERPATH = "target/pretzel/locust-master.py";
 	private static final String CSVREPORTFOLDERPATH = "target/csvlocustsresults/";
 	private static final String EXTENTREPORTCONFIGPATH = "src/main/resources/configs/extent-config.xml";
@@ -50,6 +51,11 @@ public class ConfigReader {
 	public String getChartPath() {
 		if (properties.getProperty("chartPath") != null) return properties.getProperty("chartPath");
 		else return CHARTPATH;
+	}
+
+	public String getChartDir() {
+		if (properties.getProperty("chartDir") != null) return properties.getProperty("chartDir");
+		else return CHARTDIR;
 	}
 	
 	public String getLocustMasterFilePath() {
