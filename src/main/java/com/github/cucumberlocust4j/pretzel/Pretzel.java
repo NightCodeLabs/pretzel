@@ -12,7 +12,7 @@ import java.io.File;
 public class Pretzel {
     LocustOperations locustOperations = new LocustOperations();
 
-    public static void cleanChartsDirectory() {
+    public void cleanChartsDirectory() {
         //Delete and create the locustcharts folder and csv folder in order to ensure that exists in every execution
         FileOperations.getInstance().folderInitialisation(ConfigReader.getInstance().getChartPath(), ConfigReader.getInstance().getCsvReportFolderPath());
     }
