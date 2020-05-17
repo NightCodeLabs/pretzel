@@ -1,5 +1,6 @@
 package com.github.cucumberlocust4j.pretzel.helpers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -31,7 +32,8 @@ public class ConfigReader {
 	
 	private void loadData(){
 		try {
-			properties.load(this.getClass().getResourceAsStream("/configs/config.properties"));
+			File configPropertiesFile = new File("/configs/config.properties");
+			if(configPropertiesFile.exists()) properties.load(this.getClass().getResourceAsStream("/configs/config.properties"));
 		} catch (IOException e) {
 			logger.warn("Configuration properties file cannot be found");
 			throw new RuntimeException("Configuration properties file cannot be found");
