@@ -1,4 +1,4 @@
-package com.github.cucumberlocust4j.pretzel.helpers;
+package com.github.nightcodelabs.pretzel.helpers;
 
 import java.io.File;
 import java.io.IOException;

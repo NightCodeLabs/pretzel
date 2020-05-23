@@ -1,4 +1,4 @@
-package com.github.cucumberlocust4j.pretzel.performance;
+package com.github.nightcodelabs.pretzel.performance;
 
 import com.github.myzhan.locust4j.Locust;
 import com.github.myzhan.locust4j.AbstractTask;

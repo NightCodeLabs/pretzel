@@ -1,9 +1,9 @@
-package com.github.cucumberlocust4j.pretzel;
+package com.github.nightcodelabs.pretzel;
 
-import com.github.cucumberlocust4j.pretzel.graph.LocustBarChart;
-import com.github.cucumberlocust4j.pretzel.helpers.ConfigReader;
-import com.github.cucumberlocust4j.pretzel.helpers.FileOperations;
-import com.github.cucumberlocust4j.pretzel.performance.LocustOperations;
+import com.github.nightcodelabs.pretzel.graph.LocustBarChart;
+import com.github.nightcodelabs.pretzel.helpers.ConfigReader;
+import com.github.nightcodelabs.pretzel.helpers.FileOperations;
+import com.github.nightcodelabs.pretzel.performance.LocustOperations;
 
 import java.io.File;
 

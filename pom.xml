@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.github.cucumberlocust4j</groupId>
+  <groupId>com.github.nightcodelabs</groupId>
   <artifactId>pretzel</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>pretzel</name>
   <description>Dependency Library for Locust, Cucumber and Java</description>
-  <url>https://github.com/cucumber-locust4j/pretzel</url>
+  <url>https://github.com/NightCodeLabs/pretzel</url>
   
   <licenses>
        <license>
@@ -17,7 +17,7 @@
    
    <issueManagement>
        <system>Github Issues</system>
-       <url>https://github.com/cucumber-locust4j/pretzel/issues</url>
+       <url>https://github.com/NightCodeLabs/pretzel/issues</url>
    </issueManagement>
    
    <developers>
@@ -27,7 +27,6 @@
             <url>https://github.com/dmarcas</url>
         </developer>
         <developer>
-            <name>Andrei Danilov</name>
             <id>therussiankid92</id>
             <url>https://github.com/therussiankid92</url>
         </developer>
