@@ -1,5 +1,5 @@
 # Pretzel  
-![we love pretzel](pretzel.png)  
+<img src="pretzel.png" width="100">
  
 # Purpose
 Pretzel is a tool that helps you to reuse existing Functional Tests in popular frameworks like RestAssured to do Load and Performance Tests with Java.  
