@@ -5,9 +5,8 @@ import com.github.myzhan.locust4j.AbstractTask;
 
 /**
  * Wrapper class made in order to contain the locust4j dependency inside pretzel
- * */
-
-public class PerformanceTask extends AbstractTask {
+ */
+public class Task extends AbstractTask {
 
     public Locust performance = Locust.getInstance();
 

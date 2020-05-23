@@ -17,10 +17,12 @@ import org.slf4j.LoggerFactory;
 import com.github.nightcodelabs.pretzel.helpers.ConfigReader;
 import com.github.nightcodelabs.pretzel.helpers.FileOperations;
 
-
-public class LocustBarChart {
+/**
+ * Converts the data in a csv file returned by locust to a png graph 
+ */
+public class BarChart {
 		
-	private static final Logger logger = LoggerFactory.getLogger(LocustBarChart.class);
+	private static final Logger logger = LoggerFactory.getLogger(BarChart.class);
 	private static final String TITLE = "Performance Execution Results";
     private static final String CATEGORYAXISLABELTITLE = "Load Distribution";
     private static final String VALUEAXISLABELTITLE = "Requests";
@@ -34,9 +36,9 @@ public class LocustBarChart {
     	return this.fileName;
     }    
     
+    
     /**
-     * Create the chart according to the csv perfromance results
-     * @param testResultsIteration the index of the csv results in case of the csv contains more than one line results
+     * Create a chart with the predefined design and creates a png file using an existent dataset
      */
 	public void createChart() {
 		this.fileName = "performanceChart"+System.currentTimeMillis()+".png";
@@ -52,6 +54,12 @@ public class LocustBarChart {
         }
     }
     
+	/**
+	 * Based on an specific locust csv file, prepares the data and create a dataset to be used to generate the chart 
+	 * The locust csv file could be different depending on the version of the locust master used (currently this configuration is compatible with 0.13.5).
+	 * @param path location of the csv file
+	 * @return dataset with the test results
+	 */
     private CategoryDataset createDataset(String path){
     	DefaultCategoryDataset dataset = new DefaultCategoryDataset();
     	List<String[]> datasetData = FileOperations.getInstance().readCSV(path);
@@ -61,6 +69,12 @@ public class LocustBarChart {
     	return dataset;
     }
     
+    /**
+     * Based on an specific locust csv file, prepares the statistics of the test to be used to generate the chart 
+ 	 * The locust csv file could be different depending on the version of the locust master used (currently this configuration is compatible with 0.13.5).
+	 * @param path location of the csv file
+     * @return the statistics of the test execution
+     */
     private String createRequestResults(String path){
     	List<String[]> requestData = FileOperations.getInstance().readCSV(path);
     	String requestResults = "";
