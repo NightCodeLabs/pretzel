@@ -22,8 +22,6 @@ public class ConfigReader {
 	public static final String CSVREPORTFOLDERPATH = PRETEZELINTERNALEXECUTIONFILEPATH + "/locustCsvReport/";
 	public static final String STATSREPORTPATH = CSVREPORTFOLDERPATH + "performanceResults_stats.csv";
     public static final String STATSHISTORYREPORTPATH = CSVREPORTFOLDERPATH + "performanceResults_stats_history.csv";
-	public static final String EXTENTREPORTCONFIGPATH = "src/main/resources/configs/extent-config.xml";
-	public static final String NAMEOFREPORT = "performanceResults";
 	public static final String CHARTDIR = "charts/";
     public static final String CHARTPATH = PRETEZELREPORTFILEPATH + CHARTDIR;
 	private static final Logger logger = LoggerFactory.getLogger(ConfigReader.class);
