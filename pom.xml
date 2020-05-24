@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.github.cucumberlocust4j</groupId>
+  <groupId>com.github.nightcodelabs</groupId>
   <artifactId>pretzel</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.3-SNAPSHOT</version>
   <name>pretzel</name>
   <description>Dependency Library for Locust, Cucumber and Java</description>
-  <url>https://github.com/cucumber-locust4j/pretzel</url>
+  <url>https://github.com/NightCodeLabs/pretzel</url>
   
   <licenses>
        <license>
@@ -14,10 +14,10 @@
            <distribution>repo</distribution>
        </license>
    </licenses>
-   
+
    <issueManagement>
        <system>Github Issues</system>
-       <url>https://github.com/cucumber-locust4j/pretzel/issues</url>
+       <url>https://github.com/NightCodeLabs/pretzel/issues</url>
    </issueManagement>
    
    <developers>
@@ -27,12 +27,27 @@
             <url>https://github.com/dmarcas</url>
         </developer>
         <developer>
-            <name>Andrei Danilov</name>
             <id>therussiankid92</id>
             <url>https://github.com/therussiankid92</url>
         </developer>
     </developers>
-  
+    <scm>
+        <url>https://github.com/NightCodeLabs/pretzel</url>
+        <connection>scm:git:git@github.com:NightCodeLabs/pretzel.git</connection>
+        <developerConnection>scm:git:git@github.com:NightCodeLabs/pretzel.git</developerConnection>
+      <tag>HEAD</tag>
+  </scm>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+    </distributionManagement>
+
   	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -66,18 +81,6 @@
             <version>2.6</version>
         </dependency>
 
-        <!-- Cucumber Extent Reporter -->
-        <dependency>
-    		<groupId>com.vimalselvam</groupId>
-    		<artifactId>cucumber-extentsreport</artifactId>
-    		<version>3.1.1</version>
-		</dependency>
-		
-		<dependency>
-    		<groupId>com.aventstack</groupId>
-    		<artifactId>extentreports</artifactId>
-    		<version>3.1.5</version>
-		</dependency>
         
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-csv -->
         <dependency>
@@ -121,6 +124,35 @@
 
 	<build>
     <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+            <version>2.5.3</version>
+            <configuration>
+                <localCheckout>true</localCheckout>
+                <pushChanges>false</pushChanges>
+                <mavenExecutorId>forked-path</mavenExecutorId>
+                <arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
+            </configuration>
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.maven.scm</groupId>
+                    <artifactId>maven-scm-provider-gitexe</artifactId>
+                    <version>1.9.5</version>
+                </dependency>
+            </dependencies>
+        </plugin>
+        <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.7</version>
+            <extensions>true</extensions>
+            <configuration>
+                <serverId>ossrh</serverId>
+                <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
+        </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -138,12 +170,52 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <addDefaultImplementationEntries/>
-                            <addDefaultSpecificationEntries/>
+                            <addDefaultImplementationEntries />
+                            <addDefaultSpecificationEntries />
                         </manifest>
                     </archive>
                 </configuration>
             </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.0.1</version>
+            <configuration>
+             <source>8</source>
+                    <detectJavaApiLink>false</detectJavaApiLink>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>3.0.1</version>
+            <executions>
+                <execution>
+                    <id>attach-sources</id>
+                    <goals>
+                        <goal>jar</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>attach-javadoc</id>
+                </execution>
+            </executions>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.5</version>
+            <executions>
+                <execution>
+                    <id>sign-artifacts</id>
+                    <phase>verify</phase>
+                    <goals>
+                        <goal>sign</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
         </plugins>
 	</build>
   

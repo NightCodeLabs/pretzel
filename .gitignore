@@ -4,7 +4,7 @@
 .idea
 .classpath
 .project
-locustapitest.iml
+*.iml
 src/main/resources/performance/locust-master.pyc
 src/main/resources/performance/__pycache__/locust-master.*.pyc
 performanceResults_stats_history.csv

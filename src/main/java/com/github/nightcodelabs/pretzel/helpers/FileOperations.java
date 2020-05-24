@@ -1,4 +1,4 @@
-package com.github.cucumberlocust4j.pretzel.helpers;
+package com.github.nightcodelabs.pretzel.helpers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,10 +22,13 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.opencsv.CSVReader;
 
+/**
+ * Contains different methods that manage operations with files
+ */
 public class FileOperations {
 
-	private static final String LOCUSTMASTERFILEPATH = "target/pretzel/";
-	private static final String LOCUSTMASTERFILENAME = "locust-master.py";
+	private static final String LOCUSTMASTERFILEPATH = ConfigReader.LOCUSTMASTERFILEPATH;
+	private static final String LOCUSTMASTERCOMPLETEPATH = ConfigReader.getInstance().getLocustMasterFilePath();
 	private static final Logger logger = LoggerFactory.getLogger(FileOperations.class);
 	private static FileOperations _instance = new FileOperations();
 	
@@ -34,26 +37,12 @@ public class FileOperations {
 	public static FileOperations getInstance() {
 		return _instance;
 	}
-	
-    public JSONArray CSVToJson(String csvPath) throws IOException, ParseException {
-
-        File csvFile = new File(csvPath);
-
-        JSONParser parser = new JSONParser();
-        CsvSchema csvSchema = CsvSchema.builder().setUseHeader(true).build();
-        CsvMapper csvMapper = new CsvMapper();
-
-        // Read data from CSV file
-        List<? extends Object> readAll = csvMapper.readerFor(Map.class).with(csvSchema).readValues(csvFile).readAll();
-
-        ObjectMapper mapper = new ObjectMapper();
-
-        JSONArray jsonObject = (JSONArray) parser.parse(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(readAll));
-
-        return jsonObject;
-    }
     
-    
+	/**
+	 * Read a CSV file and return a list with the values
+	 * @param pathFile Path of the CSV file.
+	 * @return The List with the contents of the CSV file
+	 */
     public List<String[]> readCSV(String pathFile){
     	List<String[]> list = new ArrayList<>();
 	    String[] fila = null;
@@ -71,30 +60,37 @@ public class FileOperations {
 		}
 		
     	return list;
+    } 
+    
+    /**
+     * Delete directory if exist and recreates it
+     * @param path Path of the folder
+     */
+    public void initialiseFolder(String path) {
+  	  try {
+  		  FileUtils.deleteDirectory(new File(path));
+  		  FileUtils.forceMkdir(new File(path));
+  	  } catch (IOException e) {
+  		  logger.error("Something went wrong initialising the "+ path +" directory");
+  	  }			
+     }
+     
+    /**
+     * Creates the locust master file is not specified by the user
+     * @return Path of the locust master file 
+     */
+    public String getGeneratedLocustMasterFilePathIfNotSpecfified() {
+  	  String locustFilePath = ConfigReader.getInstance().getLocustMasterFilePath();
+  	  if(locustFilePath.contains(LOCUSTMASTERFILEPATH)) {
+  		  this.initialiseFolder(LOCUSTMASTERFILEPATH);
+  		  this.createLocustMasterFile();
+  	  }
+  	  return locustFilePath;
     }
-    
-    
-   public String getAbsolutePath(String path) {
-	   return Paths.get(path).toFile().getAbsolutePath();
-   }
    
-   //This class needs to be moved to another class
-   public void folderInitialisation(String pathChartFolder, String pathCsvFolder) {
-	   this.initialiseFolder(pathChartFolder);
-	   this.initialiseFolder(pathCsvFolder);
-   }
-   
-   //This class needs to be moved to another class
-   public String initialiseLocustMasterFile() {
- 	  String locustFilePath = ConfigReader.getInstance().getLocustMasterFilePath();
- 	  if(locustFilePath.contains(LOCUSTMASTERFILEPATH)) {
- 		  this.initialiseFolder(LOCUSTMASTERFILEPATH);
- 		  this.createLocustMasterFile();
- 	  }
- 	  return locustFilePath;
-   }
-   
-   //This class needs to be moved to another class. Maybe to locustOperations
+    /**
+     * Creates the locust Master .py file with the dummy server
+     */
    private void createLocustMasterFile() {
 	   String[] locustMasterFileLines = { "from locust import Locust, TaskSet, task",
 			   "class DummyTask(TaskSet):",
@@ -107,7 +103,7 @@ public class FileOperations {
 
 	   FileWriter file = null;
 	   try {
-		   file = new FileWriter(LOCUSTMASTERFILEPATH + LOCUSTMASTERFILENAME);
+		   file = new FileWriter(LOCUSTMASTERCOMPLETEPATH);
 
 		   for (String locustMasterFileLine : locustMasterFileLines) {
 			   file.write(locustMasterFileLine + "\n");
@@ -118,14 +114,6 @@ public class FileOperations {
 	   }
    }
    
-   private void initialiseFolder(String path) {
-	  try {
-		  FileUtils.deleteDirectory(new File(path));
-		  FileUtils.forceMkdir(new File(path));
-	  } catch (IOException e) {
-		  logger.error("Something went wrong initialising the "+ path +" directory");
-	  }			
-   }
     
 	
 }
