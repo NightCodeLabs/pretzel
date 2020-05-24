@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.nightcodelabs</groupId>
   <artifactId>pretzel</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.3-SNAPSHOT</version>
   <name>pretzel</name>
   <description>Dependency Library for Locust, Cucumber and Java</description>
   <url>https://github.com/NightCodeLabs/pretzel</url>
@@ -35,7 +35,7 @@
         <url>https://github.com/NightCodeLabs/pretzel</url>
         <connection>scm:git:git@github.com:NightCodeLabs/pretzel.git</connection>
         <developerConnection>scm:git:git@github.com:NightCodeLabs/pretzel.git</developerConnection>
-      <tag>pretzel-0.0.2</tag>
+      <tag>HEAD</tag>
   </scm>
     <distributionManagement>
         <snapshotRepository>
