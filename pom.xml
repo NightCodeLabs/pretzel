@@ -176,6 +176,7 @@
             <version>3.2.0</version>
             <configuration>
              <source>8</source>
+                    <detectJavaApiLink>false</detectJavaApiLink>
             </configuration>
         </plugin>
         <plugin>
@@ -191,9 +192,6 @@
                 </execution>
                 <execution>
                     <id>attach-javadoc</id>
-                    <configuration>
-                        <detectJavaApiLink>false</detectJavaApiLink>
-                    </configuration>
                 </execution>
             </executions>
         </plugin>
