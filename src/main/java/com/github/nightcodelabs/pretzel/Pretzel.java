@@ -31,7 +31,7 @@ public class Pretzel {
      * @param maxRPS Max number of requests per seconds (We recommend to initialise this with the same value as maxUsers for simplicity)
      * @param weight The user weight of the task executed (This is used when multiple test are executed concurrently at the same time)
      * @param nameTask The name of the performance task to be executed in the test.
-     * @throws Exception
+     * @throws Exception an exception
      */
     public void doPretzel(Integer maxUsers, Integer usersLoadPerSecond, Integer testTime, Integer maxRPS, Integer weight, String nameTask) throws Exception {
     locustOperations.doPretzel(maxUsers,usersLoadPerSecond, testTime, maxRPS, weight, nameTask);

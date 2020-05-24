@@ -48,7 +48,7 @@ public class LocustOperations {
      * @param maxRPS Max number of requests per seconds (We recommend to initialise this with the same value as maxUsers for simplicity)
      * @param weight The user weight of the task executed (This is used when multiple test are executed concurrently at the same time)
      * @param nameTask The name of the performance task to be executed in the test.
-	 * @throws Exception
+	 * @throws Exception an exception
 	 */
     public void doPretzel(Integer maxUsers, Integer usersLoadPerSecond, Integer testTime, Integer maxRPS, Integer weight, String nameTask) throws Exception {
 		this.setTestData(maxUsers, usersLoadPerSecond, testTime, maxRPS, weight);
@@ -122,7 +122,7 @@ public class LocustOperations {
 	/**
 	 * Finds the task defined in test level and execute it
 	 * @param taskName The name of the performance task to be executed in the test.
-	 * @throws Exception
+	 * @throws Exception an exception
 	 */
 	private void executeTask(String taskName) throws Exception {
        this.locustTask=TASKPACKAGEPATH+"." + taskName;
@@ -188,7 +188,7 @@ public class LocustOperations {
      * @param data The data list to analyze
      * @param testResultsIteration The line position inside the data to read
      * @return the max response value
-     * @throws Exception
+     * @throws Exception an exception
      */
     private Long getMaxResponseTime(List<String[]> data, int testResultsIteration) throws Exception {
     	int position = 0;
