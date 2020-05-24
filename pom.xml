@@ -182,6 +182,9 @@
                 </execution>
                 <execution>
                     <id>attach-javadoc</id>
+                    <configuration>
+                        <detectJavaApiLink>false</detectJavaApiLink>
+                    </configuration>
                 </execution>
             </executions>
         </plugin>
