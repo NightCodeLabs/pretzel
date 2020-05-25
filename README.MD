@@ -18,7 +18,7 @@ We have build Pretzel to help us with all of the above.
     <dependency>  
     	<groupId>com.github.nightcodelabs</groupId>  
     	<artifactId>pretzel</artifactId>  
-    	<version>0.0.1-SNAPSHOT</version>   
+    	<version>0.0.2</version>   
     </dependency>  
 ```  
 
